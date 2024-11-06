@@ -2,7 +2,7 @@
 
 A quick ToThePoint guide covering the core and advanced concepts and typical examples on how to use Git using a graphical interface (GUI).
 The recommended software is your Git GUI. TortoiseGit and Gittyup are good alternatives, a more modern alternative can be RelaGit. All of them are (obviously) open-source.
-Most software already include a minimalist Git interface ofthen called Source Control (Vs Code, Node-RED, Git for Kicad, ...). 
+Most software already include a minimalist Git interface ofthen called Source Control (Vs Code, Node-RED, Git for Kicad, ...).
 But you should understand those core concepts before using it.
 This guide is written for Git beginners and covers all the essentials topics.
 
@@ -176,7 +176,6 @@ This guide is written for Git beginners and covers all the essentials topics.
 2. Right-click on the commit and select "Create tag".
 3. Choose the tag type (Lightweight or Annotated) and enter the tag name and optional message.
 
-
 ### Git Push and Pull
 
 * **What:**
@@ -304,51 +303,61 @@ node_modules/
 2. **Submit and Review a Pull Request:** Simulate the Pull Request process with a partner or a fictional scenario.
 
 ## Core Concepts for Git LFS
+
 LFS stand for Large File Storage: if you have large files, you will only get a pointer for the file (a placeholder) on your machine, the file will be downlaoded when accessed.
 There is no difference in day to day usage to use. Note that some GUIs do not support it fully.
 
 ### Git LFS Basics
 
 * **What:** Git LFS (Large File Storage) is an extension for managing large files in Git repositories.
-* **Why:** Using Git LFS helps reduce repository size, improve performance, and simplify collaboration.
+* **Why:** Using Git LFS helps reduce repository size while keeping all inputs and outputs tracked.
 
-**Using Git LFS:**
+**Using Git LFS in a repo:**
 
 1. **Install Git LFS:** Ensure Git LFS is installed on your system.
-2. **Set LFS Server:** Configure the LFS server URL for your repository (e.g., `git config lfs.url https://example.com/lfs`).
+2. **Initialize Git LFS in your repo:**
+   ```bash
+   cd /path/to/your/repo
+   git lfs install
+   ```
 3. **Track Large Files:** Configure Git LFS to track specific large file types (e.g., `.psd`, `.zip`).
-4. **Push/Pull with LFS:** Use your Git GUI to push and pull changes, including large files stored on the LFS server.
-
+   ```bash
+   git lfs track "*.psd" "*.zip" "*.mp4"
+   ```
+4. **Commit the .gitattributes:**
+   ```bash
+   git add .gitattributes
+   git commit -m "Track large files with Git LFS"
+   ```
 
 ## Main Workflows
 
-1. **Cloning and Initial Setup:** 
-You begin by cloning the main repository (`Clone Repository` in your Git GUI). This creates a local copy.  Then, you'll likely set up your username and email address in your Git GUI's settings; essential for identifying your commits. *(Clone -> Configure User Settings)*
-2. **Feature Branch Creation and Development:** 
-You create a new branch for your task (`Create new branch` in your Git GUI). You then make your changes and commit them frequently (`Commit` in your Git GUI), with clear commit messages.  *(Create Branch -> Make Changes -> Commit)*
-3. **Pushing to Remote and Creating a Pull Request:** 
-Once your changes are ready, you push your feature branch to the remote repository (`Push` in your Git GUI).  Then you navigate to your repository hosting service (e.g., GitHub, GitLab) to create a Pull Request (PR), selecting your feature branch. This starts the review process. *(Push -> Create Pull Request)*.
-4. **Reviewing Pull Requests (Others' Code):** 
-You often review others' PRs. This involves understanding their changes (looking at the diffs), providing feedback in comments, and requesting modifications if necessary. *(Review PR -> Add Comments -> Request Changes (optional))*
-5. **Addressing Review Feedback and Updating PR:** 
-Reviewers provide feedback on your PR. You address these comments by making further changes, creating new commits, and pushing the updates to your feature branch. the changes are automatically updated in your PR. *(Address Comments -> Make Changes -> Commit -> Push)*.
-6. **Merging Completed Pull Requests:** 
-After a successful review and final approval, your PR is merged (`Merge Pull Request` on the hosting platform).  This integrates your changes into the main branch.  *(Merge into main (automatic merging))*.
-7. **Pulling Updates from Main:** 
-To keep your local repository synced and avoid conflicts, periodically pull updates from the main (or `develop`) branch (`Pull` in your Git GUI). This downloads the latest changes from the remote repository. This frequently results in a merge operation.  *(Pull -> Merge (automatic merge most of the time) -> manual merge, chose strategy and manually edit (rarely))*.
-8. **Resolving Merge Conflicts:** 
-If you have conflicting changes with changes others have made, Git will warn you in the merge process.  You'll need to open the conflicting files, manually review changes, and resolve the conflicts; merging usually involves simply saving your edited file; the merge is complete when the conflict markers are removed. Afterwards, commit the merge. *(Automatic Merge -> Merge Conflicts: Manual Edit -> Merge Commit)*.
+1. **Cloning and Initial Setup:**
+   You begin by cloning the main repository (`Clone Repository` in your Git GUI). This creates a local copy.  Then, you'll likely set up your username and email address in your Git GUI's settings; essential for identifying your commits. *(Clone -> Configure User Settings)*
+2. **Feature Branch Creation and Development:**
+   You create a new branch for your task (`Create new branch` in your Git GUI). You then make your changes and commit them frequently (`Commit` in your Git GUI), with clear commit messages.  *(Create Branch -> Make Changes -> Commit)*
+3. **Pushing to Remote and Creating a Pull Request:**
+   Once your changes are ready, you push your feature branch to the remote repository (`Push` in your Git GUI).  Then you navigate to your repository hosting service (e.g., GitHub, GitLab) to create a Pull Request (PR), selecting your feature branch. This starts the review process. *(Push -> Create Pull Request)*.
+4. **Reviewing Pull Requests (Others' Code):**
+   You often review others' PRs. This involves understanding their changes (looking at the diffs), providing feedback in comments, and requesting modifications if necessary. *(Review PR -> Add Comments -> Request Changes (optional))*
+5. **Addressing Review Feedback and Updating PR:**
+   Reviewers provide feedback on your PR. You address these comments by making further changes, creating new commits, and pushing the updates to your feature branch. the changes are automatically updated in your PR. *(Address Comments -> Make Changes -> Commit -> Push)*.
+6. **Merging Completed Pull Requests:**
+   After a successful review and final approval, your PR is merged (`Merge Pull Request` on the hosting platform).  This integrates your changes into the main branch.  *(Merge into main (automatic merging))*.
+7. **Pulling Updates from Main:**
+   To keep your local repository synced and avoid conflicts, periodically pull updates from the main (or `develop`) branch (`Pull` in your Git GUI). This downloads the latest changes from the remote repository. This frequently results in a merge operation.  *(Pull -> Merge (automatic merge most of the time) -> manual merge, chose strategy and manually edit (rarely))*.
+8. **Resolving Merge Conflicts:**
+   If you have conflicting changes with changes others have made, Git will warn you in the merge process.  You'll need to open the conflicting files, manually review changes, and resolve the conflicts; merging usually involves simply saving your edited file; the merge is complete when the conflict markers are removed. Afterwards, commit the merge. *(Automatic Merge -> Merge Conflicts: Manual Edit -> Merge Commit)*.
 9. **Working with Multiple Branches:**
- For complex tasks, you'll likely manage multiple feature branches simultaneously. Keeping the branches organized and their purposes clear will help with a better developer experience.
-10. **Undoing Commits (Before Push):** 
-If you make a mistake *before* pushing, you can undo or amend your last commit. Using `git reset --soft HEAD^` (command line) is one way to move back one commit and adjust your mistakes before pushing the updates. *(Make mistake -> git reset --soft HEAD^ -> Adjust -> Commit)*.
+   For complex tasks, you'll likely manage multiple feature branches simultaneously. Keeping the branches organized and their purposes clear will help with a better developer experience.
+10. **Undoing Commits (Before Push):**
+    If you make a mistake *before* pushing, you can undo or amend your last commit. Using `git reset --soft HEAD^` (command line) is one way to move back one commit and adjust your mistakes before pushing the updates. *(Make mistake -> git reset --soft HEAD^ -> Adjust -> Commit)*.
 11. **Reverting Commits (After Push):**
- After a commit is pushed, reversing it is usually safer as revert instead of `git reset`. To correct past commits, use "Revert commit" in your Git GUI. This adds a *new* commit that undoes the previous mistake without altering the shared history.  *(Make a mistake in a pushed commit -> Revert Commit -> Commit)*
-12. **Amending the Last Commit:** 
-For minor adjustments to your last *unpushed* commit, use 'Amend' commit option in your Git GUI. This cleans up history by updating the last commit.  *(Minor mistakes in the last unpushed commit -> Amend Commit)*
+    After a commit is pushed, reversing it is usually safer as revert instead of `git reset`. To correct past commits, use "Revert commit" in your Git GUI. This adds a *new* commit that undoes the previous mistake without altering the shared history.  *(Make a mistake in a pushed commit -> Revert Commit -> Commit)*
+12. **Amending the Last Commit:**
+    For minor adjustments to your last *unpushed* commit, use 'Amend' commit option in your Git GUI. This cleans up history by updating the last commit.  *(Minor mistakes in the last unpushed commit -> Amend Commit)*
 
 ## Advanced concepts
-
 
 ### Git Submodules
 
