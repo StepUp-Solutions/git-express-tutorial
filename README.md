@@ -1,7 +1,7 @@
-# git-express-tutorial
+# An express start guide for Git
 
 A quick ToThePoint guide covering the core and advanced concepts and typical examples on how to use Git using a graphical interface (GUI).
-The recommended software is your Git GUI. TortoiseGit and Gittyup are good alternatives, a more modern alternative can be RelaGit. All of them are (obviously) open-source.
+The recommended software is Git Extensions. TortoiseGit and Gittyup are good alternatives, a more modern alternative can be RelaGit. All of them are (obviously) open-source.
 Most software already include a minimalist Git interface ofthen called Source Control (Vs Code, Node-RED, Git for Kicad, ...).
 But you should understand those core concepts before using it.
 This guide is written for Git beginners and covers all the essentials topics.
@@ -314,7 +314,7 @@ There is no difference in day to day usage to use. Note that some GUIs do not su
 
 **Using Git LFS in a repo:**
 
-1. **Install Git LFS:** Ensure Git LFS is installed on your system.
+1. **Install Git LFS:** Not installed by default with Git. Visit https://git-lfs.com/ for install instructions.
 2. **Initialize Git LFS in your repo:**
    ```bash
    cd /path/to/your/repo
